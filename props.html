@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <!-- babel -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+    <!-- 
+        props
+         - React elements
+            - Su dung props giong nhu voi attribute cua the HTML
+            - 2 props class, for => className, htmlFor
+            - Phai tuan theo quy uoc co san
+         - React components
+            - Su dung props giong nhu 1 doi so cho Component
+            - Tu dat ten cho props 
+                - Dat theo camelCase
+                - *Co the bao gom dau gach ngang
+         - Chu y:
+            - Props "key" la props dac biet
+            - Props co ban la doi so cua component
+                => Props co the la bat cu kieu du lieu gi
+            - Su dung destructuring binh thuong 
+     -->
+     <div id="root"></div>
+
+     <script type="text/babel">
+         //2 loai component: function, class. Tu ES6 function co nhieu tinh nang hon
+         // class dung cho nhung truong hop bai toan phuc tap
+
+        //PostItem.js
+        function PostItem(
+            {
+                title,
+                image,
+                description,
+                publishAt,
+                callBack = () => {}//or
+            }
+        ){
+            //if(typeof callBack === 'function') //or
+            callBack(Math.random())
+            return (
+                <div className="post-item">
+                    <img src={image} alt={title} />
+                    <h2 className="post-title">{title}</h2>
+                    <p className="post-description">{description}</p>
+                    <p className="post-published">{publishAt}</p>
+                </div>
+            )
+        }
+
+
+         function App() {
+            return (
+                <div id="wrapper">
+                    <PostItem 
+                        title = "title 1"
+                        image = "https://i.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U"
+                        description = "day la description 1"
+                        publishAt = "5 phut truoc" 
+                        callBack ={(random) => {
+                             console.log("random:" + random);   
+                        }}
+                    />
+                    <PostItem 
+                        title = "title 2"
+                        image = "https://i.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U"
+                        description = "day la description 1"
+                        publishAt = "5 phut truoc" 
+                    />
+                    <PostItem 
+                        title = "title 3"
+                        image = "https://i.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U"
+                        description = "day la description 1"
+                        publishAt = "5 phut truoc" 
+                    />
+                </div>
+            )
+         }
+
+         ReactDOM.render(<App/>, document.getElementById('root'));
+
+     </script>
+</body>
+</html>
