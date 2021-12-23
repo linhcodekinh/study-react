@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jsxadv</title>
+    <title>Render props</title>
     <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
     <!-- babel -->
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 </head>
 <body>
+    <!-- Render props -->
     <div id="root"></div>
     
     <script type="text/babel">
@@ -233,31 +234,29 @@
                 
         //     </div>
         // }
-        function CourseItem({
-            item
-        }) {
+        function CourseItem({data, children}) {
             return (
-                <div className="course-item">
-                    <img src={item.thumbnail_cdn} alt={item.title} />
-                    <h2 className="course-title">{item.title}</h2>
-                    <p className="course-description">{item.description}</p>
-                    <p className="course-published">{item.level}</p>
-                </div>
+                <React.Fragment>
+                    {  data.map(children)}
+                </React.Fragment>
             )
         }
 
         function App() {
             return (
                 <div id="wrapper">
-                    {
-                        course.map( item => (
-                            <CourseItem 
-                                key = {item.id}
-                                item = {item}
-                            />
-                        ))
-                    }
-                </div>
+                   <CourseItem data={course}>
+                        {item => 
+                            (
+                                <div className="post-item">
+                                    <img src={item.thumbnail_cdn} alt={item.title} />
+                                    <h2 className="course-title">{item.title}</h2>
+                                    <p className="course-description">{item.description}</p>
+                                    <p className="course-published">{item.level}</p>
+                                </div>
+                            )}
+                   </CourseItem> 
+                </div>    
             )
         }
 

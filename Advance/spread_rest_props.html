@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spread/Rest Props</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <!-- babel -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <!--   
+        //Phan II
+        - Props trong JSX
+            - <YourComponent
+                propName1="String literals"
+                propName2={expression}
+              />
+            - Props defaut to "true"
+            - Spread/Rest Props
+           
+    -->
+    <script type="text/babel">
+
+        function Input({ label, ...inputProps}){
+            return (
+                <div>
+                    <label> {label} </label>    
+                    <input {...inputProps} />    
+                </div>
+            )
+        }
+
+        function App() {
+            return (
+                <div id="wrapper">
+                    <Input 
+                        type = "text"
+                        label = "hahahah"
+                        placeholder = "Enter name ..."
+                        title = "Day la input"
+                        onFocus = {() => console.log(Math.random())}
+                    />
+                </div>
+            )
+        }
+
+        ReactDOM.render(<App/> , document.getElementById('root'));
+    </script>
+
+    
+</body>
+</html>

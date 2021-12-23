@@ -19,22 +19,6 @@
         //Phan I
         - Xu ly DOM events
         - Component do chung ta dinh nghia phai viet in hoa ki tu dau tien
-        - Chon component trong 1 obj
-        - Booleans, Null & Undefined khong duoc render
-        - Ket hop toan tu logic de render theo dieu kien
-
-        //Phan II
-        - Props trong JSX
-            - <YourComponent
-                propName1="String literals"
-                propName2={expression}
-              />
-            - Props defaut to "true"
-            - Spread/Rest Props
-            - Children prop
-                - <Your Component> String literals</Your Component>
-                - <Your Component> {expression} </Your Component>
-            - Render props
      -->
     <div id="root"></div>
 
@@ -289,74 +273,21 @@
             )
         }
 
-        // function App() {
-        //     const handleOnClick = (title) => {
-        //         console.log(title);
-        //     }
-        //     return (
-        //         <div id="wrapper">
-        //             {
-        //               course.map(item => (
-        //                   <CourseItem
-        //                     key = {item.id}
-        //                     item = {item}
-        //                     onClick = {handleOnClick}
-        //                   />
-        //               ))
-        //             }
-        //         </div>
-        //     )
-        // }
-
-        // const Form = {
-        //     Input() {
-        //         return <input type="text"/>
-        //     },
-        //     Checkbox(){
-        //         return <input type="checkbox"/>
-        //     }
-        // }
-        
-        // function App() {
-        //     const type = 'Input'
-        //     console.log(Form[type]);
-        //     const Component = Form[type]
-        //     return (
-        //         <div id="wrapper">
-        //             <Component />    
-        //         </div>
-        //     )
-        // }
-
-        function Component(props) {
-            let C = 'button'
-            const prop = {}
-
-            if (props.href) {
-                C = 'a'
-                prop.href = props.href
+        function App() {
+            const handleOnClick = (title) => {
+                console.log(title);
             }
-
-            if (props.onClick){
-                prop.onClick = props.onClick 
-            }
-            
-            return (
-                <C {...prop} >{props.title}</C>
-            )
-        }
-
-        function App( {mainTitle} ) {
-           
             return (
                 <div id="wrapper">
-                    {mainTitle || "Gia tri mac dinh"}
-                    {true && <h1>Welcome to the gioi</h1>}
-                    <Component 
-                        title = "Click me!"
-                        href = "https://fullstack.edu.vn"
-                        onClick = {() => console.log(Math.random())}
-                    />    
+                    {
+                      course.map(item => (
+                          <CourseItem
+                            key = {item.id}
+                            item = {item}
+                            onClick = {handleOnClick}
+                          />
+                      ))
+                    }
                 </div>
             )
         }

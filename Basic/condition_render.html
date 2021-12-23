@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Render by condition</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <!-- babel -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+    <!-- 
+        Lam viec voi JSX
+
+        //Phan I
+        - Booleans, Null & Undefined khong duoc render
+        - Ket hop toan tu logic de render theo dieu kien
+     -->
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        function Component(props) {
+            let C = 'button'
+            const prop = {}
+
+            if (props.href) {
+                C = 'a'
+                prop.href = props.href
+            }
+
+            if (props.onClick){
+                prop.onClick = props.onClick 
+            }
+            
+            return (
+                <C {...prop} >{props.title}</C>
+            )
+        }
+
+        function App( {mainTitle} ) {
+           
+            return (
+                <div id="wrapper">
+                    {mainTitle || "Gia tri mac dinh"}
+                    {true && <h1>Welcome to the gioi</h1>}
+                    <Component 
+                        title = "Click me!"
+                        href = "https://fullstack.edu.vn"
+                        onClick = {() => console.log(Math.random())}
+                    />    
+                </div>
+            )
+        }
+
+        ReactDOM.render(<App mainTitle="huhu" />, document.getElementById('root'));
+
+    </script>
+</body>
+
+</html>
